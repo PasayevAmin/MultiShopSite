@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;    
 using Multishop.Areas.Manage.Controllers;
+using Multishop.Areas.Manage.ViewModels;
 using Multishop.DAL;
 using Multishop.Entities;
 using Multishop.Utilities.Exseptions;
@@ -54,10 +55,18 @@ namespace Multishop.Controllers
 
             return View(productVM);
         }
-        public async Task<IActionResult> Shop(int? order)
+        public async Task<IActionResult> Shop(int page=1,int? id=null,int order=1)
         {
 
-            IQueryable<Product> query= _context.Products.Include(x=>x.ProductImages).AsQueryable();
+            IQueryable<Product> query= _context.Products.Include(x=>x.ProductImages).Include(x=>x.Category).AsQueryable();
+            if (id is not null)
+            {
+                query = query.Skip((page - 1) * 5).Take(5).Include(x => x.ProductImages.Where(p => p.IsPrimary == true));
+            }
+            else
+            {
+                query = query.Where(p => p.CategoryId == id).Skip((page - 1) * 5).Take(5).Include(x => x.ProductImages.Where(p => p.IsPrimary == true));
+            }
             switch (order)
             {
                 case 1:
@@ -69,18 +78,23 @@ namespace Multishop.Controllers
                 case 3:
                     query = query.OrderByDescending(x => x.Id);
                     break;
+               
 
 
             }
 
-            ShopVM productVM = new ShopVM
+            PaginationVM<Product> vm = new PaginationVM<Product>
             {
-
-                Products = await query.ToListAsync(),
+                CurrentPage = page,
+                Items = query.ToList(),
+                TotalPage = page,
+                Order = order,
 
             };
+            
+            
 
-            return View(productVM);
+            return View(vm);
         }
     }
 }

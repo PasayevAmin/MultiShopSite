@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YQK1TcrxqarXILdatkNHtwzajGUg0BlFaJHg5Rv+MhjXpf3BqhtT4HC54679xiDLKNGbeFdcQirJj29vjAHB7g==",
+  "dgSpecHash": "iC+a55UceiXUfJFBKhOKTXLOSqTTjVk+/eusbUMLwl9sqM4ASp9rDsZMbP3FpjkOI5Kg8Qh1L1c+tnfcHs4i8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\OneDrive\\İş masası\\Multishop\\Multishop\\Multishop.csproj",
+  "projectFilePath": "C:\\Users\\ASUS\\OneDrive\\İş masası\\MultiShopSite\\Multishop\\Multishop\\Multishop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

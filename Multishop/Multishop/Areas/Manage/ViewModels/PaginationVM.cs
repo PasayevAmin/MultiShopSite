@@ -4,6 +4,7 @@
     {
         public double TotalPage { get; set; }
         public int CurrentPage { get; set; }
+        public int Order { get; set; }
         public List<T> Items { get; set; }
     }
 }
